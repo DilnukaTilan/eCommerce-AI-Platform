@@ -1,9 +1,9 @@
 import {
+  CreditCard,
+  type LucideIcon,
   Package,
   Truck,
   XCircle,
-  CreditCard,
-  type LucideIcon,
 } from "lucide-react";
 
 export type OrderStatusValue = "paid" | "shipped" | "delivered" | "cancelled";

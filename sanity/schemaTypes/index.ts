@@ -1,4 +1,4 @@
-import { type SchemaTypeDefinition } from "sanity";
+import type { SchemaTypeDefinition } from "sanity";
 import { categoryType } from "./categoryType";
 import { customerType } from "./customerType";
 import { orderType } from "./orderType";
