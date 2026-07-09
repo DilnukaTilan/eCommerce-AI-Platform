@@ -1,4 +1,8 @@
-import { Button } from "@/components/ui/button";
+import { Suspense } from "react";
+import { FeaturedCarousel } from "@/components/app/FeaturedCarousel";
+import { FeaturedCarouselSkeleton } from "@/components/app/FeaturedCarouselSkeleton";
+import { CategoryTiles } from "@/components/app/CategoryTiles";
+import { ProductSection } from "@/components/app/ProductSection";
 import { ALL_CATEGORIES_QUERY } from "@/lib/sanity/queries/categories";
 import {
   FEATURED_PRODUCTS_QUERY,
@@ -73,9 +77,38 @@ export default async function HomePage({ searchParams }: PageProps) {
   });
 
   return (
-    <div className="">
-      Hello, World!
-      <Button>Click me</Button>
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-900">
+      {featuredProducts.length > 0 && (
+        <Suspense fallback={<FeaturedCarouselSkeleton />}>
+          <FeaturedCarousel products={featuredProducts} />
+        </Suspense>
+      )}
+
+      <div className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+        <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
+          <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+            Shop {categorySlug ? categorySlug : "All Products"}
+          </h1>
+          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+            Premium furniture for your home
+          </p>
+        </div>
+
+        <div className="mx-auto max-w-screen-2xl px-4 pt-4 sm:px-6 lg:px-8">
+          <CategoryTiles
+            categories={categories}
+            activeCategory={categorySlug || undefined}
+          />
+        </div>
+
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <ProductSection
+            categories={categories}
+            products={products}
+            searchQuery={searchQuery}
+          />
+        </div>
+      </div>
     </div>
   );
 }

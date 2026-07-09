@@ -159,11 +159,11 @@ function FeaturedSlide({ product }: FeaturedSlideProps) {
           <Button
             asChild
             size="lg"
-            className="bg-white text-zinc-900 hover:bg-zinc-100"
+            className="p-4 group bg-white text-zinc-900 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-amber-400 hover:text-zinc-900"
           >
             <Link href={`/products/${product.slug}`}>
               Shop Now
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>
