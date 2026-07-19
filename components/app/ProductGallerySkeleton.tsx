@@ -2,12 +2,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function ProductGallerySkeleton() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="space-y-4">
       <Skeleton className="aspect-square w-full rounded-lg" />
 
-      <div className="flex gap-2 overflow-x-auto">
+      <div className="grid grid-cols-4 gap-2 sm:grid-cols-5 md:grid-cols-6">
         {Array.from({ length: 4 }).map((_, i) => (
-          <Skeleton key={i} className="h-20 w-20 shrink-0 rounded-md" />
+          <Skeleton key={i} className="aspect-square w-full rounded-md" />
         ))}
       </div>
     </div>

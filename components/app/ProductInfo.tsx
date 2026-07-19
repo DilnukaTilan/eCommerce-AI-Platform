@@ -51,33 +51,41 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
       <div className="mt-6 space-y-2 border-t border-zinc-200 pt-6 dark:border-zinc-800">
         {product.material && (
-          <div className="flex justify-between text-sm">
-            <span className="text-zinc-500 dark:text-zinc-400">Material</span>
-            <span className="font-medium capitalize text-zinc-900 dark:text-zinc-100">
+          <div className="flex justify-between gap-4 text-sm">
+            <span className="shrink-0 text-zinc-500 dark:text-zinc-400">
+              Material
+            </span>
+            <span className="text-right font-medium capitalize text-zinc-900 dark:text-zinc-100">
               {product.material}
             </span>
           </div>
         )}
         {product.color && (
-          <div className="flex justify-between text-sm">
-            <span className="text-zinc-500 dark:text-zinc-400">Color</span>
-            <span className="font-medium capitalize text-zinc-900 dark:text-zinc-100">
+          <div className="flex justify-between gap-4 text-sm">
+            <span className="shrink-0 text-zinc-500 dark:text-zinc-400">
+              Color
+            </span>
+            <span className="text-right font-medium capitalize text-zinc-900 dark:text-zinc-100">
               {product.color}
             </span>
           </div>
         )}
         {product.dimensions && (
-          <div className="flex justify-between text-sm">
-            <span className="text-zinc-500 dark:text-zinc-400">Dimensions</span>
-            <span className="font-medium text-zinc-900 dark:text-zinc-100">
+          <div className="flex justify-between gap-4 text-sm">
+            <span className="shrink-0 text-zinc-500 dark:text-zinc-400">
+              Dimensions
+            </span>
+            <span className="text-right font-medium text-zinc-900 dark:text-zinc-100">
               {product.dimensions}
             </span>
           </div>
         )}
         {product.assemblyRequired !== null && (
-          <div className="flex justify-between text-sm">
-            <span className="text-zinc-500 dark:text-zinc-400">Assembly</span>
-            <span className="font-medium text-zinc-900 dark:text-zinc-100">
+          <div className="flex justify-between gap-4 text-sm">
+            <span className="shrink-0 text-zinc-500 dark:text-zinc-400">
+              Assembly
+            </span>
+            <span className="text-right font-medium text-zinc-900 dark:text-zinc-100">
               {product.assemblyRequired ? "Required" : "Not required"}
             </span>
           </div>

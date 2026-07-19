@@ -1,8 +1,9 @@
 "use client";
 
+import { useRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Grid2x2 } from "lucide-react";
+import { Grid2x2, ChevronLeft, ChevronRight } from "lucide-react";
 import type { ALL_CATEGORIES_QUERY_RESULT } from "@/sanity.types";
 
 interface CategoryTilesProps {
@@ -14,9 +15,45 @@ export function CategoryTiles({
   categories,
   activeCategory,
 }: CategoryTilesProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const checkScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 4);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    checkScroll();
+    const el = scrollRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", checkScroll, { passive: true });
+    window.addEventListener("resize", checkScroll);
+    return () => {
+      el.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+    };
+  }, [checkScroll]);
+
+  const scroll = (direction: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.6;
+    el.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="relative">
-      <div className="flex gap-4 overflow-x-auto py-4 px-1 -mx-1 scrollbar-hide">
+    <div className="relative group/scroll">
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto py-4 px-1 -mx-1 scrollbar-hide"
+      >
         <Link
           href="/"
           className={`group relative shrink-0 rounded-xl transition-all duration-300 ${
@@ -90,6 +127,26 @@ export function CategoryTiles({
           );
         })}
       </div>
+
+      {canScrollLeft && (
+        <button
+          onClick={() => scroll("left")}
+          aria-label="Scroll categories left"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-zinc-700 shadow-lg backdrop-blur-sm border border-zinc-200 transition-all duration-200 hover:bg-white hover:scale-110 hover:shadow-xl dark:bg-zinc-800/90 dark:text-zinc-200 dark:border-zinc-700 dark:hover:bg-zinc-800 opacity-0 group-hover/scroll:opacity-100"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+      )}
+
+      {canScrollRight && (
+        <button
+          onClick={() => scroll("right")}
+          aria-label="Scroll categories right"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-zinc-700 shadow-lg backdrop-blur-sm border border-zinc-200 transition-all duration-200 hover:bg-white hover:scale-110 hover:shadow-xl dark:bg-zinc-800/90 dark:text-zinc-200 dark:border-zinc-700 dark:hover:bg-zinc-800 opacity-0 group-hover/scroll:opacity-100"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      )}
     </div>
   );
 }
