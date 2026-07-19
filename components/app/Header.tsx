@@ -41,9 +41,9 @@ export function Header() {
           {!isChatOpen && (
             <Button
               onClick={openChat}
-              className="w-8 p-0 gap-0 sm:w-auto sm:px-2.5 sm:gap-2 bg-linear-to-r from-amber-500 to-orange-500 text-white transition-all hover:from-amber-600 hover:to-orange-600 cursor-pointer"
+              className="group w-8 p-0 gap-0 sm:w-auto sm:px-2.5 sm:gap-2 bg-linear-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 cursor-pointer"
             >
-              <Sparkles className="h-4 w-4 shrink-0" />
+              <Sparkles className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:rotate-30" />
               <span className="hidden sm:inline text-sm font-medium">
                 Ask AI
               </span>
