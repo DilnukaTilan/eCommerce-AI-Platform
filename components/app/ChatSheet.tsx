@@ -3,7 +3,15 @@
 import { useState, useRef, useEffect } from "react";
 import { useChat } from "@ai-sdk/react";
 import { useAuth } from "@clerk/nextjs";
-import { Sparkles, Send, Loader2, X, Bot } from "lucide-react";
+import {
+  Sparkles,
+  Send,
+  Loader2,
+  X,
+  Bot,
+  AlertCircle,
+  RotateCw,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -26,12 +34,12 @@ export function ChatSheet() {
   const { isSignedIn } = useAuth();
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { messages, sendMessage, status } = useChat();
+  const { messages, sendMessage, status, error, regenerate } = useChat();
   const isLoading = status === "streaming" || status === "submitted";
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isLoading]);
+  }, [messages, isLoading, error]);
 
   useEffect(() => {
     if (isOpen && pendingMessage && !isLoading) {
@@ -121,6 +129,34 @@ export function ChatSheet() {
                       <span className="h-2 w-2 animate-bounce rounded-full bg-amber-400" />
                     </div>
                   </div>
+                </div>
+              )}
+
+              {error && (
+                <div className="flex flex-col gap-2 rounded-xl border border-red-200 bg-red-50 p-4 text-sm dark:border-red-900/50 dark:bg-red-950/40">
+                  <div className="flex items-start gap-2 text-red-800 dark:text-red-300">
+                    <AlertCircle className="h-5 w-5 shrink-0 text-red-500 mt-0.5" />
+                    <div className="flex-1">
+                      <p className="font-medium">
+                        Failed to generate AI response
+                      </p>
+                      <p className="mt-1 text-xs text-red-600 dark:text-red-400">
+                        {error.message ||
+                          "An unexpected error occurred while communicating with the AI service."}
+                      </p>
+                    </div>
+                  </div>
+                  {regenerate && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => regenerate()}
+                      className="mt-1 self-start gap-1.5 border-red-300 text-red-700 hover:bg-red-100 dark:border-red-800 dark:text-red-300 dark:hover:bg-red-900/50"
+                    >
+                      <RotateCw className="h-3.5 w-3.5" />
+                      Try again
+                    </Button>
+                  )}
                 </div>
               )}
 

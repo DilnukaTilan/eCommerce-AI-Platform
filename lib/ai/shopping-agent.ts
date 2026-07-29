@@ -1,4 +1,5 @@
 import { gateway, type Tool, ToolLoopAgent } from "ai";
+import { openai } from "@ai-sdk/openai";
 import { searchProductsTool } from "./tools/search-products";
 import { createGetMyOrdersTool } from "./tools/get-my-orders";
 
@@ -196,8 +197,12 @@ export function createShoppingAgent({ userId }: ShoppingAgentOptions) {
     tools.getMyOrders = getMyOrdersTool;
   }
 
+  const model = process.env.OPENAI_API_KEY
+    ? openai("gpt-4o-mini")
+    : gateway("openai/gpt-5.4-mini");
+
   return new ToolLoopAgent({
-    model: gateway("openai/gpt-5.4-mini"),
+    model,
     instructions,
     tools,
   });

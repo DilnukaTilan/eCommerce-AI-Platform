@@ -11,6 +11,7 @@
     "typegen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^4.0.23",
     "@ai-sdk/react": "^4.0.44",
     "@base-ui/react": "^1.6.0",
     "@clerk/nextjs": "^7.5.11",
