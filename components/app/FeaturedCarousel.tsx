@@ -76,8 +76,8 @@ export function FeaturedCarousel({ products }: FeaturedCarouselProps) {
           ))}
         </CarouselContent>
 
-        <CarouselPrevious className="left-4 border-zinc-700 bg-zinc-800/80 text-white hover:bg-zinc-700 hover:text-white sm:left-8" />
-        <CarouselNext className="right-4 border-zinc-700 bg-zinc-800/80 text-white hover:bg-zinc-700 hover:text-white sm:right-8" />
+        <CarouselPrevious className="hidden left-4 border-zinc-700 bg-zinc-800/80 text-white hover:bg-zinc-700 hover:text-white sm:left-8 sm:inline-flex" />
+        <CarouselNext className="hidden right-4 border-zinc-700 bg-zinc-800/80 text-white hover:bg-zinc-700 hover:text-white sm:right-8 sm:inline-flex" />
       </Carousel>
 
       {count > 1 && (
@@ -110,7 +110,7 @@ function FeaturedSlide({ product }: FeaturedSlideProps) {
   const mainImage = product.images?.[0]?.asset?.url;
 
   return (
-    <div className="flex min-h-[400px] flex-col md:min-h-[450px] md:flex-row lg:min-h-[500px]">
+    <div className="flex min-h-100 flex-col md:min-h-112.5 md:flex-row lg:min-h-125">
       <div className="relative h-64 w-full md:h-auto md:w-3/5">
         {mainImage ? (
           <Image
