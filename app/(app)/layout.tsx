@@ -5,6 +5,7 @@ import { ChatStoreProvider } from "@/lib/store/chat-store-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { Header } from "@/components/app/Header";
 import { CartSheet } from "@/components/app/CartSheet";
+import { ChatSheet } from "@/components/app/ChatSheet";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -14,6 +15,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
           <Header />
           <main>{children}</main>
           <CartSheet />
+          <ChatSheet />
           <Toaster position="bottom-center" />
           <SanityLive />
         </ChatStoreProvider>
