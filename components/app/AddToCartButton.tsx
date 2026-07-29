@@ -25,7 +25,6 @@ export function AddToCartButton({
 }: AddToCartButtonProps) {
   const { addItem, updateQuantity } = useCartActions();
   const cartItem = useCartItem(productId);
-
   const quantityInCart = cartItem?.quantity ?? 0;
   const isOutOfStock = stock <= 0;
   const isAtMax = quantityInCart >= stock;

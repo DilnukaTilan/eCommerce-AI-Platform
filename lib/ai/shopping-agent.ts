@@ -197,7 +197,7 @@ export function createShoppingAgent({ userId }: ShoppingAgentOptions) {
   }
 
   return new ToolLoopAgent({
-    model: gateway("openai/gpt-4o-mini"),
+    model: gateway("openai/gpt-5.4-mini"),
     instructions,
     tools,
   });
