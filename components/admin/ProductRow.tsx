@@ -248,7 +248,9 @@ function ProductRowSkeleton() {
         <Skeleton className="h-8 w-8" />
       </TableCell>
       <TableCell className="hidden py-4 sm:table-cell">
-        <Skeleton className="h-8 w-25" />
+        <div className="flex items-center justify-end gap-2">
+          <Skeleton className="h-8 w-24" />
+        </div>
       </TableCell>
     </TableRow>
   );
