@@ -33,7 +33,7 @@ export function Footer() {
       <div className="border-b border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-7xl px-4 py-8">
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-            <div className="flex items-center justify-center gap-3">
+            <div className="flex items-center justify-start sm:justify-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100">
                 <Truck className="h-5 w-5 stroke-[1.5]" />
               </div>
@@ -47,7 +47,7 @@ export function Footer() {
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-3">
+            <div className="flex items-center justify-start sm:justify-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100">
                 <Leaf className="h-5 w-5 stroke-[1.5]" />
               </div>
@@ -61,7 +61,7 @@ export function Footer() {
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-3">
+            <div className="flex items-center justify-start sm:justify-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100">
                 <ShieldCheck className="h-5 w-5 stroke-[1.5]" />
               </div>
@@ -75,7 +75,7 @@ export function Footer() {
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-3">
+            <div className="flex items-center justify-start sm:justify-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100">
                 <RefreshCw className="h-5 w-5 stroke-[1.5]" />
               </div>
@@ -121,7 +121,7 @@ export function Footer() {
                 <Button
                   type="submit"
                   size="sm"
-                  className="h-10 px-4 shrink-0 bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 transition-colors cursor-pointer"
+                  className="group h-10 px-4 shrink-0 cursor-pointer"
                 >
                   {subscribed ? (
                     <span className="flex items-center gap-1">
@@ -129,7 +129,8 @@ export function Footer() {
                     </span>
                   ) : (
                     <span className="flex items-center gap-1">
-                      Subscribe <ArrowRight className="h-3.5 w-3.5" />
+                      Subscribe{" "}
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                     </span>
                   )}
                 </Button>
