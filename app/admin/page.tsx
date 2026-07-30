@@ -49,9 +49,9 @@ export default function AdminDashboard() {
           className="w-full sm:w-auto"
         >
           {isPending ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            <Plus className="mr-2 h-4 w-4" />
+            <Plus className="h-4 w-4" />
           )}
           New Product
         </Button>

@@ -62,26 +62,42 @@ interface InsightsResponse {
 
 function AIInsightsCardSkeleton() {
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
-      <div className="mb-6 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-violet-500 to-purple-600">
-          <Sparkles className="h-5 w-5 text-white" />
+    <div className="rounded-xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
+      <div className="flex items-center justify-between border-b border-zinc-200 p-6 dark:border-zinc-800">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-violet-500 to-purple-600">
+            <Sparkles className="h-5 w-5 text-white" />
+          </div>
+          <div>
+            <Skeleton className="h-5 w-28" />
+            <Skeleton className="mt-1 h-3.5 w-36" />
+          </div>
         </div>
-        <div>
-          <Skeleton className="h-6 w-32" />
-          <Skeleton className="mt-1 h-4 w-48" />
-        </div>
+        <Skeleton className="h-9 w-24 rounded-md" />
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid grid-cols-2 gap-px border-b border-zinc-200 bg-zinc-200 dark:border-zinc-800 dark:bg-zinc-800 sm:grid-cols-4">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="bg-white p-4 dark:bg-zinc-900">
+            <Skeleton className="h-3 w-20" />
+            <Skeleton className="mt-2 h-6 w-24" />
+            <Skeleton className="mt-1 h-3 w-16" />
+          </div>
+        ))}
+      </div>
+
+      <div className="grid gap-6 p-6 md:grid-cols-3">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="space-y-3">
-            <Skeleton className="h-5 w-24" />
-            <Skeleton className="h-16 w-full" />
-            <div className="space-y-2">
+          <div key={i} className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Skeleton className="h-4 w-4 rounded-full" />
+              <Skeleton className="h-5 w-28" />
+            </div>
+            <Skeleton className="h-10 w-full" />
+            <div className="space-y-2 pt-2">
               <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-3/4" />
               <Skeleton className="h-4 w-5/6" />
+              <Skeleton className="h-4 w-4/6" />
             </div>
           </div>
         ))}
@@ -114,6 +130,7 @@ export function AIInsightsCard() {
       } else {
         setLoading(true);
       }
+
       setError(null);
 
       const response = await fetch("/api/admin/insights");
@@ -163,7 +180,7 @@ export function AIInsightsCard() {
             onClick={() => fetchInsights()}
             className="border-red-300 text-red-700 hover:bg-red-100 dark:border-red-700 dark:text-red-300 dark:hover:bg-red-900/50"
           >
-            <RefreshCw className="mr-2 h-4 w-4" />
+            <RefreshCw className="h-4 w-4" />
             Retry
           </Button>
         </div>
