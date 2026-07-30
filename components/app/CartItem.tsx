@@ -52,11 +52,11 @@ export function CartItem({ item, stockInfo }: CartItemProps) {
       </div>
 
       <div className="flex flex-1 flex-col">
-        <div className="flex justify-between">
+        <div className="flex items-start justify-between gap-2 min-w-0">
           <Link
             href={`/products/${item.productId}`}
             className={cn(
-              "font-medium text-zinc-900 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-300",
+              "font-medium text-zinc-900 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-300 line-clamp-2 min-w-0",
               isOutOfStock && "text-zinc-400 dark:text-zinc-500",
             )}
           >
@@ -65,7 +65,7 @@ export function CartItem({ item, stockInfo }: CartItemProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 text-zinc-400 hover:text-red-500"
+            className="h-8 w-8 shrink-0 text-zinc-400 hover:text-red-500"
             onClick={() => removeItem(item.productId)}
           >
             <Trash2 className="h-4 w-4" />
@@ -77,10 +77,10 @@ export function CartItem({ item, stockInfo }: CartItemProps) {
           {formatPrice(item.price)}
         </p>
 
-        <div className="mt-2 flex flex-row justify-between items-center gap-2">
+        <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
           <StockBadge productId={item.productId} stock={currentStock} />
           {!isOutOfStock && (
-            <div className="w-32 flex self-end ml-auto">
+            <div className="w-28 sm:w-32 shrink-0 ml-auto">
               <AddToCartButton
                 productId={item.productId}
                 name={item.name}

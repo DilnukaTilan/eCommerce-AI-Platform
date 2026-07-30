@@ -21,7 +21,7 @@ export function CartSummary({ hasStockIssues = false }: CartSummaryProps) {
   if (totalItems === 0) return null;
 
   return (
-    <div className="border-t border-zinc-200 p-4 dark:border-zinc-800">
+    <div className="border-t border-zinc-200 p-4 pb-6 sm:pb-4 dark:border-zinc-800">
       <div className="flex justify-between text-base font-medium text-zinc-900 dark:text-zinc-100">
         <span>Subtotal</span>
         <span>{formatPrice(totalPrice)}</span>
